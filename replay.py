@@ -21,7 +21,7 @@ from compare_results import Audit
 
 
 ROOT = Path(__file__).resolve().parent
-ZIP_HASH = "5ee65e07c019e62889edeb355374c7f82896988b9280abd084b7eacfe67e4f66"
+ZIP_HASH = "5c1217d250dd82c93c1f5d27db544771769f8578509fbc3744cb290e6057e8c1"
 MEASURED = "inputs/measured/lemna_cccp_ke_response_data_intake_ready.csv"
 ARCHIVED_RUN = PurePosixPath("rerun/windows_api")
 PREPARATION_CHECKS = {

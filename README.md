@@ -1,4 +1,4 @@
-# qAOPweaver-OpenAccess
+# qAOPweaver-OA
 
 R and Python reproduction code for the qAOPweaver demo case.
 
