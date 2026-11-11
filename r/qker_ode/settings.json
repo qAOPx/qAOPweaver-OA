@@ -1,0 +1,391 @@
+{
+  "qker": {
+    "models": "LL.4,W1.4,BC.5,LN.4,W2.4",
+    "preparation": {
+      "keep_control": true,
+      "control_dose": 0,
+      "missing": "retain_na",
+      "harmonization": "keep_original",
+      "normalization": "none",
+      "log_dose": false,
+      "log_response": false,
+      "reverse_direction": false,
+      "replicates": "retain_replicates",
+      "replicate_config": null,
+      "temporal_connection": {
+        "mode": "same_time_only"
+      },
+      "coverage_selection": {
+        "reviewed": true,
+        "selected_ker_ids": [
+          "KER_KE1446_KE1771",
+          "KER_KE1771_KE1821",
+          "KER_KE1821_KE1521"
+        ],
+        "issue_resolutions": {},
+        "time_pairs": [
+          {
+            "ker_id": "KER_KE1446_KE1771",
+            "upstream_time": 2,
+            "downstream_time": 2
+          },
+          {
+            "ker_id": "KER_KE1446_KE1771",
+            "upstream_time": 4,
+            "downstream_time": 4
+          },
+          {
+            "ker_id": "KER_KE1446_KE1771",
+            "upstream_time": 7,
+            "downstream_time": 7
+          },
+          {
+            "ker_id": "KER_KE1771_KE1821",
+            "upstream_time": 2,
+            "downstream_time": 2
+          },
+          {
+            "ker_id": "KER_KE1771_KE1821",
+            "upstream_time": 4,
+            "downstream_time": 4
+          },
+          {
+            "ker_id": "KER_KE1771_KE1821",
+            "upstream_time": 7,
+            "downstream_time": 7
+          },
+          {
+            "ker_id": "KER_KE1821_KE1521",
+            "upstream_time": 2,
+            "downstream_time": 2
+          },
+          {
+            "ker_id": "KER_KE1821_KE1521",
+            "upstream_time": 4,
+            "downstream_time": 4
+          },
+          {
+            "ker_id": "KER_KE1821_KE1521",
+            "upstream_time": 7,
+            "downstream_time": 7
+          }
+        ]
+      },
+      "missing_time_unit": null
+    }
+  },
+  "ode": {
+    "synthetic": {
+      "graph": {
+        "nodes": [
+          {
+            "node_id": "KE1446"
+          },
+          {
+            "node_id": "KE1771"
+          },
+          {
+            "node_id": "KE1821"
+          },
+          {
+            "node_id": "KE1521"
+          }
+        ],
+        "edges": [
+          {
+            "from": "KE1446",
+            "to": "KE1771",
+            "edge_id": "KER_KE1446_KE1771"
+          },
+          {
+            "from": "KE1771",
+            "to": "KE1821",
+            "edge_id": "KER_KE1771_KE1821"
+          },
+          {
+            "from": "KE1821",
+            "to": "KE1521",
+            "edge_id": "KER_KE1821_KE1521"
+          }
+        ]
+      },
+      "model_family": "linear_qaop",
+      "mode": "inverse_fitting",
+      "states": [
+        {
+          "node_id": "KE1446",
+          "state_id": "KE1446"
+        },
+        {
+          "node_id": "KE1771",
+          "state_id": "KE1771"
+        },
+        {
+          "node_id": "KE1821",
+          "state_id": "KE1821"
+        },
+        {
+          "node_id": "KE1521",
+          "state_id": "KE1521"
+        }
+      ],
+      "equations": {
+        "KE1446": "-param_k1 * (KE1446 - param_p1)",
+        "KE1771": "-param_k2 * (KE1771 - KE1446)",
+        "KE1821": "-param_k3 * (KE1821 - KE1771)",
+        "KE1521": "-param_k4 * (KE1521 - KE1821)"
+      },
+      "parameters": [
+        {
+          "parameter_id": "param_k1",
+          "parameter_role": "free",
+          "value": 0.3
+        },
+        {
+          "parameter_id": "param_p1",
+          "parameter_role": "free",
+          "value": 80
+        },
+        {
+          "parameter_id": "param_k2",
+          "parameter_role": "free",
+          "value": 0.3
+        },
+        {
+          "parameter_id": "param_k3",
+          "parameter_role": "free",
+          "value": 0.3
+        },
+        {
+          "parameter_id": "param_k4",
+          "parameter_role": "free",
+          "value": 0.3
+        }
+      ],
+      "parameter_bounds": [
+        {
+          "parameter_id": "param_k1",
+          "lower": 0.001,
+          "upper": 5
+        },
+        {
+          "parameter_id": "param_p1",
+          "lower": 0,
+          "upper": 200
+        },
+        {
+          "parameter_id": "param_k2",
+          "lower": 0.001,
+          "upper": 5
+        },
+        {
+          "parameter_id": "param_k3",
+          "lower": 0.001,
+          "upper": 5
+        },
+        {
+          "parameter_id": "param_k4",
+          "lower": 0.001,
+          "upper": 5
+        }
+      ],
+      "parameter_transforms": {},
+      "initial_conditions": [
+        {
+          "state_id": "KE1446",
+          "initial_value": 100
+        },
+        {
+          "state_id": "KE1771",
+          "initial_value": 100
+        },
+        {
+          "state_id": "KE1821",
+          "initial_value": 100
+        },
+        {
+          "state_id": "KE1521",
+          "initial_value": 100
+        }
+      ],
+      "time_grid": {
+        "start": 0,
+        "end": 8,
+        "step": 1
+      },
+      "dose_value": 1000,
+      "scenario_variables": {},
+      "solver_config": {
+        "method": "rk4"
+      },
+      "fitting_config": {
+        "maxit": 100,
+        "objective": "sum_squared_error"
+      },
+      "diagnostics_config": {
+        "profile_likelihood": false
+      },
+      "output_config": {
+        "report": true,
+        "plot_ready": true
+      },
+      "external_validation": null
+    },
+    "measured": {
+      "graph": {
+        "nodes": [
+          {
+            "node_id": "KE1446"
+          },
+          {
+            "node_id": "KE1771"
+          },
+          {
+            "node_id": "KE1821"
+          },
+          {
+            "node_id": "KE1521"
+          }
+        ],
+        "edges": [
+          {
+            "from": "KE1446",
+            "to": "KE1771",
+            "edge_id": "KER_KE1446_KE1771"
+          },
+          {
+            "from": "KE1771",
+            "to": "KE1821",
+            "edge_id": "KER_KE1771_KE1821"
+          },
+          {
+            "from": "KE1821",
+            "to": "KE1521",
+            "edge_id": "KER_KE1821_KE1521"
+          }
+        ]
+      },
+      "model_family": "linear_qaop",
+      "mode": "inverse_fitting",
+      "states": [
+        {
+          "node_id": "KE1446",
+          "state_id": "KE1446"
+        },
+        {
+          "node_id": "KE1771",
+          "state_id": "KE1771"
+        },
+        {
+          "node_id": "KE1821",
+          "state_id": "KE1821"
+        },
+        {
+          "node_id": "KE1521",
+          "state_id": "KE1521"
+        }
+      ],
+      "equations": {
+        "KE1446": "-param_k1 * (KE1446 - param_p1)",
+        "KE1771": "-param_k2 * (KE1771 - KE1446)",
+        "KE1821": "-param_k3 * (KE1821 - KE1771)",
+        "KE1521": "-param_k4 * (KE1521 - KE1821)"
+      },
+      "parameters": [
+        {
+          "parameter_id": "param_k1",
+          "parameter_role": "free",
+          "value": 0.3
+        },
+        {
+          "parameter_id": "param_p1",
+          "parameter_role": "free",
+          "value": 80
+        },
+        {
+          "parameter_id": "param_k2",
+          "parameter_role": "free",
+          "value": 0.3
+        },
+        {
+          "parameter_id": "param_k3",
+          "parameter_role": "free",
+          "value": 0.3
+        },
+        {
+          "parameter_id": "param_k4",
+          "parameter_role": "free",
+          "value": 0.3
+        }
+      ],
+      "parameter_bounds": [
+        {
+          "parameter_id": "param_k1",
+          "lower": 0.001,
+          "upper": 5
+        },
+        {
+          "parameter_id": "param_p1",
+          "lower": 0,
+          "upper": 200
+        },
+        {
+          "parameter_id": "param_k2",
+          "lower": 0.001,
+          "upper": 5
+        },
+        {
+          "parameter_id": "param_k3",
+          "lower": 0.001,
+          "upper": 5
+        },
+        {
+          "parameter_id": "param_k4",
+          "lower": 0.001,
+          "upper": 5
+        }
+      ],
+      "parameter_transforms": {},
+      "initial_conditions": [
+        {
+          "state_id": "KE1446",
+          "initial_value": 100
+        },
+        {
+          "state_id": "KE1771",
+          "initial_value": 100
+        },
+        {
+          "state_id": "KE1821",
+          "initial_value": 100
+        },
+        {
+          "state_id": "KE1521",
+          "initial_value": 100
+        }
+      ],
+      "time_grid": {
+        "start": 0,
+        "end": 7,
+        "step": 1
+      },
+      "dose_value": 1000,
+      "scenario_variables": {},
+      "solver_config": {
+        "method": "rk4"
+      },
+      "fitting_config": {
+        "maxit": 100,
+        "objective": "sum_squared_error"
+      },
+      "diagnostics_config": {
+        "profile_likelihood": false
+      },
+      "output_config": {
+        "report": true,
+        "plot_ready": true
+      },
+      "external_validation": null
+    }
+  }
+}

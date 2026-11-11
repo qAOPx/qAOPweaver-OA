@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+.runtime/
+.Rhistory
+.RData
+renv/library/
+public-r-library/
+local-run/
+validation-run*/
+v16-run*/
+.test-results/
+.clean-results/
+.verify*/
+*.zip
+review-results/
